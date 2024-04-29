@@ -6,12 +6,26 @@ import { Star } from "react-feather";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { ModeToggle } from "./mode-toggle";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const { theme } = useTheme();
 
+  const [stargazers, setStargazers] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchStargazers = async () => {
+      const response = await fetch("/api/stargazers");
+      const data = await response.json();
+
+      setStargazers(data);
+    };
+
+    fetchStargazers();
+  }, []);
+
   return (
-    <div className="fixed top-0 flex w-full justify-center border-b border bg-white/50 dark:bg-neutral-950/50 backdrop-blur-xl z-30 transition-all">
+    <div className="fixed top-0 z-30 flex w-full justify-center border border-b bg-white/50 backdrop-blur-xl transition-all dark:bg-neutral-950/50">
       <div className="mx-5 flex h-16 w-full max-w-screen-md items-center justify-between">
         <Link href="/">
           <Image
@@ -29,11 +43,11 @@ const Header = () => {
             passHref
           >
             <Button
-              className="flex items-center space-x-1 text-muted-foreground hover:ring-4 ring-secondary/30"
+              className="flex items-center space-x-1 text-muted-foreground ring-secondary/30 hover:ring-4"
               variant="outline"
             >
               <Star size={16} />
-              <span>333</span>
+              <span>{stargazers}</span>
             </Button>
           </Link>
           <ModeToggle />

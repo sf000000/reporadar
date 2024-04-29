@@ -11,7 +11,7 @@ export function ModeToggle() {
     <Button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       size="icon"
-      className="text-muted-foreground hover:ring-4 ring-secondary/30"
+      className="text-muted-foreground ring-secondary/30 hover:ring-4"
       variant="outline"
     >
       {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}

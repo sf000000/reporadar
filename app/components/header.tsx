@@ -11,7 +11,7 @@ const Header = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="fixed top-0 flex w-full justify-center bg-white/0 z-30 transition-all">
+    <div className="fixed top-0 flex w-full justify-center border-b border bg-white/50 dark:bg-neutral-950/50 backdrop-blur-xl z-30 transition-all">
       <div className="mx-5 flex h-16 w-full max-w-screen-md items-center justify-between">
         <Link href="/">
           <Image

@@ -10,7 +10,7 @@ const Hero = () => {
       >
         <Sparkles size={20} />
         <p className="text-sm font-semibold text-neutral-800 dark:text-neutral-50">
-          Introducing RepoRadar
+          Introducing Repo Radar
         </p>
       </Link>
       <h1

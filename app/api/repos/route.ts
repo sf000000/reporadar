@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 
 import axios from "axios";
 
-export const revalidate = 0;
+export const revalidate = 60 * 60; // 1 hour
 
 export async function GET(req: NextRequest) {
   const from = req.nextUrl.searchParams.get("from");

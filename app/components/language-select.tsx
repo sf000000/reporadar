@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import axios from "axios";
 import {
   Select,
   SelectContent,
@@ -11,33 +10,42 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Languages } from "@/types";
+
+const LANGUAGES = [
+  "TypeScript",
+  "JavaScript",
+  "Python",
+  "Java",
+  "C#",
+  "PHP",
+  "Ruby",
+  "Go",
+  "Swift",
+  "Kotlin",
+  "Rust",
+  "Scala",
+  "Perl",
+  "Haskell",
+  "Lua",
+  "Clojure",
+  "Elixir",
+  "Erlang",
+  "Dart",
+  "F#",
+  "R",
+  "Groovy",
+  "Julia",
+  "Crystal",
+  "Nim",
+  "Zig",
+  "Nix",
+  "Shell",
+  "PowerShell",
+];
 
 export function LanguageSelect() {
   const router = useRouter();
-
-  const [languages, setLanguages] = useState<Languages>({});
-
-  useEffect(() => {
-    const fetchLanguages = async () => {
-      try {
-        const response = await axios.get("/api/languages");
-        setLanguages(response.data);
-      } catch (error: any) {
-        console.error(error);
-      }
-    };
-
-    fetchLanguages();
-  }, []);
-
-  const languageItems = Object.keys(languages).map((lang) => (
-    <SelectItem key={languages[lang].language_id} value={lang}>
-      {lang}
-    </SelectItem>
-  ));
 
   const onValueChange = (value: string) => {
     const params = new URLSearchParams(window.location.search);
@@ -53,7 +61,11 @@ export function LanguageSelect() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Languages</SelectLabel>
-          {languageItems}
+          {LANGUAGES.map((language) => (
+            <SelectItem key={language} value={language}>
+              {language}
+            </SelectItem>
+          ))}
         </SelectGroup>
       </SelectContent>
     </Select>

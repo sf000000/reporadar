@@ -23,16 +23,15 @@ const randomGradient = () => {
 };
 
 const RepoCard = ({ repos, loading }: RepoCardProps) => {
+  const _repos = Array.isArray(repos) ? repos : [];
   return (
     <>
       {loading ? (
         <>
           <RepoCardSkeleton />
-          <RepoCardSkeleton />
-          <RepoCardSkeleton />
         </>
       ) : (
-        repos.map((repo) => (
+        _repos.map((repo) => (
           <Link
             href={repo.url}
             key={repo.id}
@@ -76,7 +75,7 @@ const RepoCard = ({ repos, loading }: RepoCardProps) => {
 };
 
 const RepoCardSkeleton = () => {
-  return Array.from({ length: 3 }).map((_, i) => (
+  return Array.from({ length: 9 }).map((_, i) => (
     <div
       key={i}
       className="h-[223px] w-[245px] animate-pulse rounded-xl bg-secondary"
